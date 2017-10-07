@@ -4,38 +4,39 @@ import java.util.Date;
 
 public class Agenda {
 
-    static int num = 0;
+    static int _num = 0;
 
     int aid;
-    Date startDate;
-    Date endDate;
+    Date startTime;
+    Date endTime;
     User creator;
     User participator;
     String label;
 
-    public Agenda(Date startDate, Date endDate, User participator, String label) {
-        this.aid = num;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        //this.creator = null;
+    public Agenda(User creator, User participator, Date startTime, Date endTime, String label) {
+        this.aid = _num;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.creator = creator;
         this.participator = participator;
         this.label = label;
+        _num++;
     }
 
     public Agenda() {
-        this(null, null, null, null);
+        this(null, null, null, null, null);
     }
 
     public int getAid() {
         return aid;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Date getEndTime() {
+        return endTime;
     }
 
     public User getCreator() {
@@ -50,12 +51,12 @@ public class Agenda {
         return label;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public void setParticipator(User participator) {
