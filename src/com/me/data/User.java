@@ -4,6 +4,11 @@ import java.util.List;
 
 import static java.util.Objects.hash;
 
+/**
+ * <h1>User</h1>
+ * <p>为数据类，为用户实体。
+ *
+ */
 public class User {
 
     int uid;
@@ -41,6 +46,6 @@ public class User {
     }
 
     static public int getUidByName(String name) {
-        return hash(name.hashCode());
+        return name.hashCode();
     }
 }

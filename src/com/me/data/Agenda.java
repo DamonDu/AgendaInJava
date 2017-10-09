@@ -2,6 +2,11 @@ package com.me.data;
 
 import java.util.Date;
 
+/**
+ * <h1>Agenda</h1>
+ * <p>是数据类，为议程实体。
+ *
+ */
 public class Agenda {
 
     static int _num = 0;
