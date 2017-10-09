@@ -1,10 +1,17 @@
 package com.me.util;
 
 import com.me.data.User;
+import com.me.ui.UI;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * <h1>UserManager</h1>
+ * <p>维护一个完整的用户集合，并且提供一系列处理用户的方法，如注册，查重等。
+ *
+ */
 public class UserManager {
 
     static UserManager _userManager;
@@ -13,7 +20,7 @@ public class UserManager {
     User currentUser;
 
     private UserManager() {
-        _userManager.allUsers = new HashMap();
+        allUsers = new HashMap();
         userAgendaManager = null;
         currentUser = null;
     }
@@ -28,24 +35,19 @@ public class UserManager {
     public boolean login(User user) {
         try {
             if (ifUserExist(user)) {
-                //throw
-                return false;
+                throw new Exception("User Exist!");
             }
             this.allUsers.put(user.getUid(), user);
             return true;
         }
-        finally {
-
+        catch (Exception e) {
+            UI.printException(e);
+            return false;
         }
     }
 
     public boolean login(String name, String password) {
-        try {
             return login(new User(name, password));
-        }
-        finally {
-
-        }
     }
 
     public boolean signUp(String name, String password) {
@@ -56,11 +58,12 @@ public class UserManager {
                 return true;
             }
             else {
-                return false;
+                throw new Exception("Wrong Password!");
             }
         }
-        finally {
-
+        catch (Exception e){
+            UI.printException(e);
+            return false;
         }
     }
 
@@ -74,13 +77,13 @@ public class UserManager {
 
     public boolean checkPassword(String name, String password) {
         try {
-            if (ifUserExist(name.hashCode()) == false) {
-                //throw
-                return false;
+            if ((ifUserExist(name.hashCode())) == false) {
+                throw new Exception("User not exist!");
             }
-            return (allUsers.get(name.hashCode()).getPassword() == password);
+            return (allUsers.get(name.hashCode()).getPassword().equals(password));
         }
-        finally {
+        catch (Exception e){
+            UI.printException(e);
             return false;
         }
     }
@@ -97,13 +100,13 @@ public class UserManager {
         try {
             int uid = User.getUidByName(name);
             if (!ifUserExist(uid)) {
-                //throw
-                return null;
+                throw new Exception("User not exist!");
             }
             return _getInstance().allUsers.get(uid);
         }
-        finally {
-
+        catch (Exception e){
+            UI.printException(e);
+            return null;
         }
     }
 }
