@@ -1,7 +1,13 @@
 package com.me.cmd;
 
+import com.me.ui.UI;
 
 
+/**
+ * <h1>Cmd</h1>
+ * <p>提供对用户CMD界面输入的命令的检查，解析方法。
+ *
+ */
 public class Cmd {
 
     Command command;
@@ -22,20 +28,19 @@ public class Cmd {
                     return;
                 }
                 if (this.command == null) {
-                    //throw
-                    return;
+                    throw new Exception("Command syntax error!");
                 }
                 if ((arr.length - 1) != this.argsNum){
-                    //throw
-                    return;
+                    throw new Exception("Parameter error!");
                 }
+                args = new String[arr.length - 1];
                 for (int i = 1; i < arr.length; i++) {
                     args[i - 1] = arr[i];
                 }
             }
         }
-        finally {
-
+        catch (Exception e){
+            UI.printException(e);
         }
     }
 
