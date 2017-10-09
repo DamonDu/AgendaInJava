@@ -19,7 +19,7 @@ public class UserAgendaManager implements AgendaManager {
         this.currentUser = currentUser;
         for (Agenda a : _allAgenda
              ) {
-        if (a.getCreator() == currentUser) 
+        if (a.getCreator() == currentUser)
             createAgenda.add(a);
         if (a.getParticipator() == currentUser)
             participateAgenda.add(a);

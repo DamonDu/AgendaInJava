@@ -11,7 +11,7 @@ public class User {
     String password;
 
     public User(String name, String password) {
-        this.uid = hash(name.hashCode());
+        this.uid = getUidByName(name);
         this.name = name;
         this.password = password;
     }
@@ -38,5 +38,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    static public int getUidByName(String name) {
+        return hash(name.hashCode());
     }
 }

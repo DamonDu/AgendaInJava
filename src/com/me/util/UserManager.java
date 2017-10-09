@@ -64,12 +64,12 @@ public class UserManager {
         }
     }
 
-    public boolean ifUserExist(User user) {
-        return this.allUsers.containsKey(user.getUid());
+    static public boolean ifUserExist(User user) {
+        return _getInstance().allUsers.containsKey(user.getUid());
     }
 
-    public boolean ifUserExist(int uid) {
-        return this.allUsers.containsKey(uid);
+    static public boolean ifUserExist(int uid) {
+        return _getInstance().allUsers.containsKey(uid);
     }
 
     public boolean checkPassword(String name, String password) {
@@ -82,6 +82,28 @@ public class UserManager {
         }
         finally {
             return false;
+        }
+    }
+
+    public UserAgendaManager getUserAgendaManager() {
+        return userAgendaManager;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    static public User getUserByName(String name) {
+        try {
+            int uid = User.getUidByName(name);
+            if (!ifUserExist(uid)) {
+                //throw
+                return null;
+            }
+            return _getInstance().allUsers.get(uid);
+        }
+        finally {
+
         }
     }
 }
