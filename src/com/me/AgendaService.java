@@ -24,7 +24,11 @@ public class AgendaService {
             Scanner scanner = new Scanner(System.in);
             String str = scanner.nextLine();
             //System.out.println(str);
-            if(Processor.process(new Cmd(str)) == 1) {
+            Cmd cmd = new Cmd(str);
+            if (cmd == null) {
+                continue;
+            }
+            if(Processor.process(cmd) == 1) {
                 break;
             }
         }
